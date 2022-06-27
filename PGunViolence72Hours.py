@@ -14,6 +14,8 @@ from selenium.webdriver.common.by import By
 
 import config
 
+## TODO #6 Create Meaningful Comments
+
 geolocator = Nominatim(user_agent="mass_geocode")
 
 auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
@@ -28,7 +30,7 @@ driver = uc.Chrome(options=options, use_subprocess=True)
 driver.get("https://www.gunviolencearchive.org/last-72-hours")
 driver.maximize_window()
 
-time.sleep(10)
+time.sleep(10) ## TODO #5 use selenium to wait for the page to load @politwit1984
 
 folder = driver.find_element(By.XPATH, '//a[@class="button"]')
 
