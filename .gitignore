@@ -32,6 +32,9 @@ MANIFEST
 keys.txt
 config.py
 
+#cheatsheets
+markdown-cheat-sheet.md
+
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
