@@ -27,6 +27,11 @@ client = tweepy.Client(bearer_token=config.bearer_token)
 
 # Set up ChromeDriver (disable-extensions and subprocess needs to be used for this application to run)
 options = webdriver.ChromeOptions()
+
+
+
+
+# Defines autodownload and download PATH
 options.add_argument("--disable-extensions")
 driver = uc.Chrome(options=options, use_subprocess=True)
 driver.get("https://www.gunviolencearchive.org/last-72-hours")
@@ -54,10 +59,10 @@ new_filename = "72hoursdownloaded.csv"
 filepath = "c:/Users/Joe Wilson/Downloads" 
 
 filename = max(
-    [filepath + "/" + f for f in os.listdir(filepath)], key=os.path.getctime
+    [filepath + "/" + f for f in os.listdir(filepath)], key=os.path.getctime #finds the most recent file in the folder
 )
 shutil.move(os.path.join(
-    "C:/Coding/gunviolencetweter/", filename), new_filename)
+    "C:/Coding/gunviolencetweeter/", filename), new_filename)
 
 # Create a dataframe from the CSV file to read in victim numbers and locations
 df = pd.read_csv(new_filename)
