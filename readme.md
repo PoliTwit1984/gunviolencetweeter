@@ -10,7 +10,7 @@ All data of gun violence is being collected from [gunviolencearchive.org](https:
 
 ## Packages Used
 - Tweepy
-- Matplotlib
+- Plotly
 - Geocoder
 - Pandas
 - Selenium
