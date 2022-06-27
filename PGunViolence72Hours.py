@@ -4,15 +4,12 @@ import shutil
 import time
 
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import tweepy
 import undetected_chromedriver as uc
 from geopy.geocoders import Nominatim
-from matplotlib import projections
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-# pip insfrom transformers import LayoutLMTokenizer
 from selenium.webdriver.common.by import By
 
 import config
@@ -25,44 +22,31 @@ bearer_token = config.bearer_token
 api = tweepy.API(auth)
 client = tweepy.Client(bearer_token=config.bearer_token)
 
-
 options = webdriver.ChromeOptions()
-
-
 options.add_argument("--disable-extensions")
-
 driver = uc.Chrome(options=options, use_subprocess=True)
-
-
 driver.get("https://www.gunviolencearchive.org/last-72-hours")
-
 driver.maximize_window()
 
 time.sleep(10)
 
-
 folder = driver.find_element(By.XPATH, '//a[@class="button"]')
-
 
 folder.click()
 
 time.sleep(10)
-
 
 folder = driver.find_element(By.XPATH, "//a[text()='Download']")
 
-
 time.sleep(10)
-folder.click()
 
+folder.click()
 
 time.sleep(30)
 
 driver.quit()
 
-
 new_filename = "72hoursdownloaded.csv"
-# new_filename = "shootings.csv"
 filepath = "c:/Users/Joe Wilson/Downloads"
 filename = max(
     [filepath + "/" + f for f in os.listdir(filepath)], key=os.path.getctime
@@ -122,7 +106,6 @@ df.to_csv(temp_file)
 
 df = pd.read_csv(temp_file)
 
-
 print("Creating Plot...")
 fig = go.Figure(
     data=go.Scattergeo(
@@ -134,7 +117,6 @@ fig = go.Figure(
         marker_color="darkred",
     )
 )
-
 
 fig.update_geos(
     visible=True,
@@ -164,7 +146,6 @@ fig.update_layout(
     paper_bgcolor="darkorange",
     font=dict(color="Black", size=60, family="Bernard MT Condensed"),
 )
-
 
 fig.add_annotation(
     dict(
@@ -199,11 +180,8 @@ fig.add_annotation(
 fig.write_image("72hoursgunviolence.png", width=1500, height=1000)
 print("Creating Plot Complete...")
 
-
 tweet_filename = "72hoursgunviolence.png"
-
 media = api.media_upload(tweet_filename)
-
 tweet = "Gun Violence Last 72 Hours #VoteThemOut #EndGunViolence #moleg"
 post_result = api.update_status(status=tweet, media_ids=[media.media_id])
 
