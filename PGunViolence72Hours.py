@@ -111,6 +111,8 @@ df.to_csv(temp_file)
 
 df = pd.read_csv(temp_file)
 
+# Using Plotly to create a map of the data
+
 print("Creating Plot...")
 fig = go.Figure(
     data=go.Scattergeo(
