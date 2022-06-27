@@ -8,13 +8,8 @@ from urllib.request import urlopen
 import json
 import plotly.express as px
 
-df = pd.read_csv("2020election.csv")
-df['fips'] = ''
-df['rb'] = ''
-df['county_fips'] = df['county_fips'].astype(str)
-# if df['']
-m = df['county_fips'].str.len().max()
-df['fips'] = df['county_fips'].str.rjust(m, fillchar='0')
+df = pd.read_csv("2020election2.csv")
+
 
 with urlopen('https://raw.githubusercontent.com/plotly/datasets/master/geojson-counties-fips.json') as response:
     counties = json.load(response)
