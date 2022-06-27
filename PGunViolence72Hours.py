@@ -59,7 +59,7 @@ filename = max(
 shutil.move(os.path.join(
     "C:/Coding/gunviolencetweter/", filename), new_filename)
 
-
+# Create a dataframe from the CSV file to read in victim numbers and locations
 df = pd.read_csv(new_filename)
 
 df["query"] = ""
@@ -71,6 +71,7 @@ df["address"] = ""
 
 length = len(df)
 
+# Iterate through the dataframe and convert addresses to coordinates
 print("Geocoding...")
 for i in df.index:
     try:
@@ -90,6 +91,7 @@ print(df.head())
 
 df["victims"] = ""
 
+# Iterate through the dataframe and get the number of victims (there are injured and killed in dataframe - adding the two)
 print("Calculating Victims...")
 victims = 0
 for i in df.index:
@@ -112,7 +114,6 @@ df.to_csv(temp_file)
 df = pd.read_csv(temp_file)
 
 # Using Plotly to create a map of the data
-
 print("Creating Plot...")
 fig = go.Figure(
     data=go.Scattergeo(
@@ -187,6 +188,7 @@ fig.add_annotation(
 fig.write_image("72hoursgunviolence.png", width=1500, height=1000)
 print("Creating Plot Complete...")
 
+# Use Tweepy to tweet out the map
 tweet_filename = "72hoursgunviolence.png"
 media = api.media_upload(tweet_filename)
 tweet = "Gun Violence Last 72 Hours #VoteThemOut #EndGunViolence #moleg"
@@ -194,6 +196,7 @@ post_result = api.update_status(status=tweet, media_ids=[media.media_id])
 
 time.sleep(2)
 
+# Remove all temporary files that were created
 if os.path.exists(new_filename):
     os.remove(new_filename)
 
