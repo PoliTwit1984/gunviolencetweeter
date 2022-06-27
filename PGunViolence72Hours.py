@@ -47,9 +47,7 @@ time.sleep(30)
 driver.quit()
 
 new_filename = "72hoursdownloaded.csv"
-filepath = "c:/Users/Joe Wilson/Downloads" ## TODO #3 - allow users to specifiy this location
-
-
+filepath = "c:/Users/Joe Wilson/Downloads" 
 
 filename = max(
     [filepath + "/" + f for f in os.listdir(filepath)], key=os.path.getctime
