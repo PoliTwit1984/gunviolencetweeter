@@ -10,20 +10,22 @@ import undetected_chromedriver as uc
 from geopy.geocoders import Nominatim
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
+from selenium.webdriver.common.by import By 
 
+# Twitter API credentials
 import config
 
-## TODO #6 Create Meaningful Comments
-
+# Instantiates geocoder to convert addresses to coordinates
 geolocator = Nominatim(user_agent="mass_geocode")
 
+# Set Twitter Creditentials
 auth = tweepy.OAuthHandler(config.consumer_key, config.consumer_secret)
 auth.set_access_token(config.access_token, config.access_token_secret)
 bearer_token = config.bearer_token
 api = tweepy.API(auth)
 client = tweepy.Client(bearer_token=config.bearer_token)
 
+# Set up ChromeDriver (disable-extensions and subprocess needs to be used for this application to run)
 options = webdriver.ChromeOptions()
 options.add_argument("--disable-extensions")
 driver = uc.Chrome(options=options, use_subprocess=True)
