@@ -22,4 +22,4 @@ All data of gun violence is being collected from [gunviolencearchive.org](https:
 - Selenium
 - undetected_chromedriver
 
-![twitter]https://img.shields.io/twitter/url?style=social&url=http%3A%2F%2Fwww.twitter.com%2Fpolitwit1984
+
