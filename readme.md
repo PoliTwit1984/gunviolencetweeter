@@ -21,3 +21,5 @@ All data of gun violence is being collected from [gunviolencearchive.org](https:
 - Pandas
 - Selenium
 - undetected_chromedriver
+
+
